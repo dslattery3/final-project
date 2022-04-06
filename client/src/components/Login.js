@@ -9,6 +9,7 @@ function Login() {
                 <input type='text' placeholder='username'/>
                 <label>password</label>
                 <input type='password' placeholder='password'/>
+                <button type='submit'>Login</button>
             </form>
         </div>        
     </div>
