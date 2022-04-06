@@ -16,7 +16,15 @@ function App() {
     .then(r=>r.json())
     .then(data => {
       const people = data.map( o => {
-        return {name: o.name, species: o.species, gender: o.gender, height: o.height, affiliations: o.affiliations, home: o.homeworld,  image: o.image}
+        return {
+          name: o.name,
+          species: o.species,
+          gender: o.gender,
+          height: o.height,
+          affiliations: o.affiliations,
+          home: o.homeworld, 
+          image: o.image
+        }
       })
       setCharacters(people)
       setHeight(avgHeight(people))

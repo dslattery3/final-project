@@ -7,7 +7,7 @@ function Home() {
         <h1>@</h1>
         <h3>+++The+++</h3>
         <h3>Sticker</h3>
-        <h3> Collector</h3>
+        <h3>Collector</h3>
         <h3>++++++++++</h3>
         <div className='nav-button'>
             <NavLink to='/signup'>
