@@ -1,17 +1,30 @@
 import React, {useState} from 'react'
 
-function SignUp() {
+function SignUp({setUser, navigate}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-  const handleLogin = (e) => {
-    e.preventDefault()    
-    console.log('username', username)
-    console.log('password', password)
-    console.log('confirmPasswor', confirmPassword)
+  const handleSignUp = (e) => {
+    e.preventDefault()
     if (password === confirmPassword){
-      //do post
+      fetch('/users',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: confirmPassword
+        })
+      }).then(r => {
+          if (r.ok){
+            r.json().then(data => {
+              setUser(data)
+              navigate('/')
+            })
+        }
+      })
     }
     else{
       //create popup
@@ -20,7 +33,7 @@ function SignUp() {
 
   return (
     <div className='signup-container'>
-            <form className='form' onSubmit={e => handleLogin(e)}>
+            <form className='form' onSubmit={e => handleSignUp(e)}>
                 <label>username:</label>
                 <input onChange={e => setUsername((e.target.value).toLowerCase())} type='text' placeholder='username' value={username}/>
                 <label>password</label>

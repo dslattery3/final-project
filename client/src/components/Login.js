@@ -1,13 +1,32 @@
 import React, {useState} from 'react'
 
-function Login() {
+function Login({setUser, navigate}) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const handleLogin = (e) => {
     e.preventDefault()
-    console.log('username', username)
-    console.log('password', password)
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    }).then(r=> {
+      if (r.ok){
+        r.json().then(data => {
+          console.log(data)
+          setUser(data)
+          navigate('/user')
+        })
+      }
+      else{
+        r.json().then(console.log)
+      }
+  })
   }
 
   return (
