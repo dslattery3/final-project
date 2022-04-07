@@ -1,12 +1,26 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, useLocation} from 'react-router-dom'
 
 function NavBar({user}) {
+  const location = useLocation()
+
+  const routes = [{pathname: '/', name: 'Home'}, {pathname: '/quizzes', name: 'Archives'}, {pathname: '/user', name: 'userPage'}]
+  
+  const buttons = routes.filter(o => o.pathname != location.pathname).map((o,i) => {
+    return(
+      <NavLink to={o.pathname} key={i}>
+        <button className='navbar-button'>{o.name}</button>
+      </NavLink>
+    )
+  })
+
+  console.log(buttons)
   return (
     <div className='navbar'>
       {user &&
         <div className='nav-left'>
-          <NavLink to='/'>
+          {buttons}
+          {/* <NavLink to='/'>
               <button className='navbar-button'>Home</button>
           </NavLink>
           <NavLink to='/quizzes'>
@@ -14,7 +28,7 @@ function NavBar({user}) {
           </NavLink>
           <NavLink to='/user'>
               <button className='navbar-button'>userPage</button>
-          </NavLink>
+          </NavLink> */}
         </div>
       }
       {user && 

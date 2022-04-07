@@ -57,14 +57,13 @@ function App() {
   return (
     <div className="App">
       <NavBar user={user}/>
-      <button onClick={()=> setHeight(avgHeight(characters))}>Click Me</button>
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
         <Route path='/quizzes' element={<QuizContainer />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate}/>} />
         <Route path='/login' element={<Login setUser={setUser} navigate={navigate}/>} />
         <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate}/>} />
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home user={user} />} />
       </Routes>
     </div>
   );
