@@ -78,16 +78,6 @@ button:active{
   padding-right: 5%;
 }
 
-/* .signup-container
-.login-container {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-evenly;
-  margin-top: 500px;
-  margin-left: 15%;
-  margin-right: 15%;
-} */
-
 .form {
   margin-top: 5%;
   margin-left: 25%;
@@ -100,7 +90,6 @@ button:active{
   padding-bottom: 2%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
   row-gap: 5px;
 }
 
