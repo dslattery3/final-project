@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   color: yellow;
+  text-align: center;
 }
 
 a {
@@ -108,4 +109,31 @@ button:active{
   background-color: black;
   outline-color: #19f3ea;
   border-color: #19f3ea;
+}
+
+.quiz-card-container{
+  display: flex;
+  flex-flow: row wrap;
+  border-style: solid;
+  justify-content: space-evenly;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-radius: 20px;
+}
+
+.quiz-card{
+  border-style: solid;
+  border-width: 2px;
+  padding: 10px;
+  margin: 10%;
+  border-radius: 8%;
+  color: yellow;
+  width: 80%;
+}
+
+.quiz-container{
+  display: flex;
+  border-style: solid;
+  margin-left: 10%;
+  margin-right: 10%;
 }

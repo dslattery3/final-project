@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react"
 import {Routes, Route, useNavigate} from "react-router-dom"
-import NavBar from "./NavBar";
+import NavBar from "./NavBar"
 import UserPage from './UserPage.js'
 import Home from './Home.js'
 import SignUp  from "./SignUp"
 import Login from './Login.js'
 import Logout from './Logout.js'
-import '../App.css';
-import QuizContainer from "./QuizContainer";
+import QuizContainer from "./QuizContainer"
+import QuizPage from "./QuizPage"
+// import '../App.css';
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -40,7 +41,8 @@ function App() {
       })
       setCharacters(people)
       setHeight(avgHeight(people))
-    })}, [])
+    }
+  )}, [])
 
   const avgHeight  = (arr) => {
     let initialSum = 0
@@ -54,12 +56,16 @@ function App() {
   console.log('avgHeight', height)
   console.log('characters', characters)
 
+  
+  const arr = ['a','b','c','d','e']
+
   return (
     <div className="App">
-      <NavBar user={user}/>
+      {user && <NavBar user={user}/> }
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
-        <Route path='/quizzes' element={<QuizContainer />} />
+        <Route path='/quizzes/:id' element={<QuizPage arr={arr}/>} />
+        <Route path='/quizzes' element={<QuizContainer arr={arr} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate}/>} />
         <Route path='/login' element={<Login setUser={setUser} navigate={navigate}/>} />
         <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate}/>} />

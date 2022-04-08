@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :answers, only: [:index, :show]
+  resources :questions, only: [:index, :show]
+  resources :userquizzes, only: [:index, :show]
+  resources :quizzes, only: [:index, :show]
   resources :useritems, only: [:index]
   resources :items, only: [:index, :show]
   resources :users, only: [:create, :show, :update]

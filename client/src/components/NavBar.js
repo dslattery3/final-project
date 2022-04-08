@@ -1,11 +1,9 @@
 import React from 'react'
 import {NavLink, useLocation} from 'react-router-dom'
 
-function NavBar({user}) {
+function NavBar() {
   const location = useLocation()
-
-  const routes = [{pathname: '/', name: 'Home'}, {pathname: '/quizzes', name: 'Archives'}, {pathname: '/user', name: 'userPage'}]
-  
+  const routes = [{pathname: '/', name: 'Home'}, {pathname: '/quizzes', name: 'Archives'}, {pathname: '/user', name: 'userPage'}]  
   const buttons = routes.filter(o => o.pathname != location.pathname).map((o,i) => {
     return(
       <NavLink to={o.pathname} key={i}>
@@ -13,11 +11,10 @@ function NavBar({user}) {
       </NavLink>
     )
   })
+  const logout = (location.pathname == '/logout')
 
-  console.log(buttons)
   return (
     <div className='navbar'>
-      {user &&
         <div className='nav-left'>
           {buttons}
           {/* <NavLink to='/'>
@@ -29,15 +26,14 @@ function NavBar({user}) {
           <NavLink to='/user'>
               <button className='navbar-button'>userPage</button>
           </NavLink> */}
-        </div>
-      }
-      {user && 
+        </div>        
         <div className='nav-right'>
-          <NavLink to='/logout'>
-            <button id='logout-button'>Logout</button>
-          </NavLink>          
+          {!logout &&
+            <NavLink to='/logout'>
+              <button id='logout-button'>Logout</button>
+            </NavLink>  
+          }        
         </div>
-      }
     </div>
   )
 }
