@@ -14,6 +14,7 @@ function App() {
   const [characters, setCharacters] = useState([])
   const [height, setHeight] = useState(0)
   const [user, setUser] = useState(null)
+  const [quizzes, setQuizzes] = useState([])
 
   useEffect(()=> {
     fetch('/me')
@@ -44,6 +45,11 @@ function App() {
     }
   )}, [])
 
+  useEffect(() => {
+    fetch('/quizzes').then(r=>r.json()).then(setQuizzes)
+  },[])
+
+
   const avgHeight  = (arr) => {
     let initialSum = 0
     let heightArr = arr.map( o => o.height).filter(h => h !== undefined)
@@ -53,9 +59,10 @@ function App() {
 
   const navigate = useNavigate()
 
-  console.log('avgHeight', height)
-  console.log('characters', characters)
+  // console.log('avgHeight', height)
+  // console.log('characters', characters)
 
+  console.log(quizzes)
   
   const arr = ['a','b','c','d','e']
 
@@ -64,8 +71,8 @@ function App() {
       {user && <NavBar user={user}/> }
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
-        <Route path='/quizzes/:id' element={<QuizPage arr={arr}/>} />
-        <Route path='/quizzes' element={<QuizContainer arr={arr} />} />
+        <Route path='/quizzes/:id' element={<QuizPage arr={arr} quizzes={quizzes}/>} />
+        <Route path='/quizzes' element={<QuizContainer arr={arr} quizzes={quizzes} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate}/>} />
         <Route path='/login' element={<Login setUser={setUser} navigate={navigate}/>} />
         <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate}/>} />

@@ -1,5 +1,5 @@
 class QuizSerializer < ActiveModel::Serializer
-  attributes :name, :questions, :answers
+  attributes :name, :id, :questions, :answers
 
   def questions
     object.questions.pluck :question_text

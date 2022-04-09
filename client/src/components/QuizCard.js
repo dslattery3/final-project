@@ -1,13 +1,12 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-function QuizCard({e}) {
-    
+function QuizCard({q}) {
   return (
-    <NavLink to={`${e}`}>
+    <NavLink to={`${q && q.id}`}>
         <button className='quiz-card'>
-            <h1>quiz Card</h1>
-            <h5>{e}</h5>
+            <h1>{q && q.name}</h1>
+            <h5>{q && q.questions.length}</h5>
         </button>
     </NavLink>
     
