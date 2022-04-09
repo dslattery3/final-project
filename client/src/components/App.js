@@ -15,6 +15,7 @@ function App() {
   const [height, setHeight] = useState(0)
   const [user, setUser] = useState(null)
   const [quizzes, setQuizzes] = useState([])
+  const [userAnswer, setUserAnswer] = useState({})
 
   useEffect(()=> {
     fetch('/me')
@@ -71,8 +72,8 @@ function App() {
       {user && <NavBar user={user}/> }
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
-        <Route path='/quizzes/:id' element={<QuizPage arr={arr} quizzes={quizzes}/>} />
-        <Route path='/quizzes' element={<QuizContainer arr={arr} quizzes={quizzes} />} />
+        <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer}/>} />
+        <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate}/>} />
         <Route path='/login' element={<Login setUser={setUser} navigate={navigate}/>} />
         <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate}/>} />

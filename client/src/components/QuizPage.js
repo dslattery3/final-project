@@ -1,24 +1,17 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import QuestionAnswerCard from './QuestionAnswerCard'
 
-function QuizPage({arr, quizzes}) {
-    const {id} = useParams()
-    console.log(id)
-    const combined = [...arr]
-    console.log('combined before', combined)
-    quizzes && combined.push([...quizzes])
-    const quiz = combined.filter(e => e == id)
+function QuizPage({ quizzes, userAnswer, setUserAnswer }) {
+  const { id } = useParams()
+  const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
 
   return (
     <div className='quiz-page'>
-        quizPage
-        <h3>{quizzes && quiz}</h3>
-        <div className='quiz-container'>
-            
-
-        </div>
-
-
+      <h1>{quizzes && quizzes.find(q => q.id === parseInt(id)).name}</h1>
+      <div className='quiz-question-container'>
+        {questionAnswers}
+      </div>
     </div>
   )
 }
