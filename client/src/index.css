@@ -173,3 +173,9 @@ button:active {
   height: 50px;
   width: 100%;
 }
+
+.profile-pic {
+  height: 200px;
+  border: 2px solid yellow;
+  border-radius: 10%;
+}

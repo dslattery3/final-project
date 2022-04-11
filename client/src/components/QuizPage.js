@@ -4,6 +4,9 @@ import QuestionAnswerCard from './QuestionAnswerCard'
 
 function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate }) {
   const { id } = useParams()
+  if (parseInt(id) === 1) {
+    navigate('/quizzes')
+  }
 
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
 

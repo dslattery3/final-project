@@ -1,13 +1,12 @@
 import React from 'react'
 
 function UserPage({ user }) {
-
   console.log(user)
 
   return (
     <div>
-      <img src={user ? user.profile_pic : null} alt={user ? 'profile-pic' : null} />
       <h1>{user && `${user.username}'s Headquarters`}</h1>
+      <img className='profile-pic' src={user ? user.profile_pic : null} alt={user ? 'profile-pic' : null} />
       <h3>Collection</h3>
       <div className='user-collection'>
 
