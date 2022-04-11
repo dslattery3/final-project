@@ -10,7 +10,7 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
 
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
 
-  console.log('quiz page component')
+  console.log(userAnswer)
 
   const handleQuizSumbit = () => {
     if (Object.values(userAnswer).length === questionAnswers.length) {

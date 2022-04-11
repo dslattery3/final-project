@@ -19,7 +19,6 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
         return copy
     }
 
-
     const handleQuizSumbit = () => {
         pqResults = filterFunction()
         const randomElement = pqResults[Math.floor(Math.random() * pqResults.length)]
@@ -32,10 +31,9 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
                 profile_pic: randomElement.image
             })
         }).then(r => r.json()).then(setUser)
+        setUserAnswer({})
         navigate('/user')
     }
-
-    console.log(userAnswer)
 
     return (
         <div className='quiz-page'>
