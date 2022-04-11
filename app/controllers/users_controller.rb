@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         if user.id != session[:user_id]
             return render json: {error: "Not Authorized"}, status: :unauthorized
         end
-        render json: user, status: :ok
+        render json: user, include: :userquizzes, status: :ok
     end
 
     def update

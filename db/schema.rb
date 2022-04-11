@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_04_08_150856) do
   create_table "userquizzes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "quiz_id", null: false
+    t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_id"], name: "index_userquizzes_on_quiz_id"

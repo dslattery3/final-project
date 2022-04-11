@@ -9,10 +9,10 @@ function QuestionAnswerCard({ q, userAnswer, setUserAnswer }) {
   })
 
   const handleClick = (q, a) => {
-    debugger
+    // debugger
     let answerObj = { ...userAnswer }
     answerObj[q.id] = a.correct
-    debugger
+    // debugger
     setUserAnswer(answerObj)
   }
 
@@ -24,7 +24,6 @@ function QuestionAnswerCard({ q, userAnswer, setUserAnswer }) {
       <div className='answer-container'>
         {answers}
       </div>
-
     </div>
   )
 }
