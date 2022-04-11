@@ -8,13 +8,13 @@ import Login from './Login.js'
 import Logout from './Logout.js'
 import QuizContainer from "./QuizContainer"
 import QuizPage from "./QuizPage"
-// import '../App.css';
+import PersonalityQuiz from "./PersonalityQuiz"
 
 function App() {
   const [characters, setCharacters] = useState([])
   const [height, setHeight] = useState(0)
   const [user, setUser] = useState(null)
-  const [quizzes, setQuizzes] = useState([])
+  const [quizzes, setQuizzes] = useState(null)
   const [userAnswer, setUserAnswer] = useState({})
 
   useEffect(() => {
@@ -51,7 +51,6 @@ function App() {
     fetch('/quizzes').then(r => r.json()).then(setQuizzes)
   }, [])
 
-
   const avgHeight = (arr) => {
     let initialSum = 0
     let heightArr = arr.map(o => o.height).filter(h => h !== undefined)
@@ -63,13 +62,12 @@ function App() {
 
   console.log(quizzes)
 
-  const arr = ['a', 'b', 'c', 'd', 'e']
-
   return (
     <div className="App">
       {user && <NavBar user={user} />}
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
+        <Route path='/personality_quiz' element={<PersonalityQuiz quizzes={quizzes} user={user} setUser={setUser} characters={characters} height={height} navigate={navigate} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />} />
         <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer} user={user} setUser={setUser} navigate={navigate} />} />
         <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate} />} />

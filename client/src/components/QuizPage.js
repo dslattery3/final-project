@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import QuestionAnswerCard from './QuestionAnswerCard'
 
 function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate }) {
   const { id } = useParams()
+
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
+
+  console.log('quiz page component')
+
   const handleQuizSumbit = () => {
     if (Object.values(userAnswer).length === questionAnswers.length) {
       const score = (Object.values(userAnswer).filter(e => e === true)).length

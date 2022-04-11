@@ -1,5 +1,6 @@
 class QuizzesController < ApplicationController
-
+    # skip_before_action :authorized, only: :show
+    
     def index
         quizzes = Quiz.all
         render json: quizzes, status: :ok

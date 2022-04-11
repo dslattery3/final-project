@@ -9,10 +9,8 @@ function QuestionAnswerCard({ q, userAnswer, setUserAnswer }) {
   })
 
   const handleClick = (q, a) => {
-    // debugger
     let answerObj = { ...userAnswer }
     answerObj[q.id] = a.correct
-    // debugger
     setUserAnswer(answerObj)
   }
 
