@@ -9,6 +9,7 @@ import Logout from './Logout.js'
 import QuizContainer from "./QuizContainer"
 import QuizPage from "./QuizPage"
 import PersonalityQuiz from "./PersonalityQuiz"
+import Footer from "./Footer"
 
 function App() {
   const [characters, setCharacters] = useState([])
@@ -75,6 +76,7 @@ function App() {
         <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate} />} />
         <Route path='/' element={<Home user={user} />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

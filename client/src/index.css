@@ -12,12 +12,17 @@ a {
   color: #19f3ea;
 }
 
-#credit {
+.footer {
   font-size: 10px;
   display: flex;
+  width: 100%;
   flex-direction: row;
+  position: absolute;
+  bottom: 0;
   justify-content: center;
-  margin-top: 10%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button,
@@ -182,4 +187,28 @@ button:active {
   height: 200px;
   border: 2px solid yellow;
   border-radius: 10%;
+}
+
+.user-collection {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.user-collection>img {
+  margin-top: -10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.user-scores {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.user-scores>h4 {
+  margin-top: -8px;
 }

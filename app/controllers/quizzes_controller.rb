@@ -16,10 +16,8 @@ class QuizzesController < ApplicationController
         userquiz = Userquiz.create(user_id: user.id, quiz_id: params[:id], score: params[:score])
         quizitem = Quiz.find_by(id: params[:id]).quizitems.sample        
         if (user.useritems.pluck(:item_id).include?(quizitem.item_id))
-            byebug
             render json: user, serializer: UserSerializer, status: :ok
         else
-            byebug
             Useritem.create(user_id: user.id, item_id: quizitem.item.id)
             render json: user, serializer: UserSerializer, status: :ok
         end
