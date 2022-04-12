@@ -60,8 +60,6 @@ function App() {
 
   const navigate = useNavigate()
 
-  console.log(quizzes)
-
   return (
     <div className="App">
       {user && <NavBar user={user} />}

@@ -29,11 +29,15 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                profile_pic: randomElement.image
+                profile_pic: randomElement.image,
+                profile_pic_name: randomElement.name,
+                profile_pic_wiki: randomElement.wiki_page
             })
-        }).then(r => r.json()).then(setUser)
-        setUserAnswer({})
-        navigate('/user')
+        }).then(r => r.json()).then(data => {
+            setUser(data)
+            setUserAnswer({})
+            navigate('/user')
+        })
     }
 
     return (

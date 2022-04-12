@@ -19,16 +19,17 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
         score: score
       }
       if (score === questionAnswers.length) {
-        fetch('/quizzes/:id/perfect_score', {
+        fetch(`/quizzes/${id}/perfect_score`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify(toScore)
         }).then(r => r.json()).then(data => {
-
+          setUser(data)
+          setUserAnswer({})
+          navigate('/user')
         })
-
       }
       else {
         fetch('/userquizzes', {
@@ -41,10 +42,11 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
           let newUser = { ...user }
           newUser.userquizzes.push(data)
           setUser(newUser)
+          setUserAnswer({})
+          navigate('/user')
         })
       }
-      setUserAnswer({})
-      navigate('/user')
+
     }
     else {
       alert('You did not answer all questions')

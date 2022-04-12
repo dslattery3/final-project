@@ -50,10 +50,10 @@ Answer.create(answer_text: "general grievous", correct: false, question_id: sith
 puts 'Answers done'
 
 puts 'Seeding Items'
-darth_maul = Item.create(name: 'darth maul', image_url: './stickers/darth_maul.png')
-darth_vader = Item.create(name: 'darth vader', image_url: './stickers/darth_vader.png')
-darth_sidious = Item.create(name: 'darth sidious', image_url: './stickers/darth_sidious.png')
-count_dooku = Item.create(name: 'count dooku', image_url: './stickers/count_dooku.png')
+darth_maul = Item.create(name: 'darth maul', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_maul_ilk9lz.png')
+darth_vader = Item.create(name: 'darth vader', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_vader_cxsyzk.png')
+darth_sidious = Item.create(name: 'darth sidious', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_sidious_wenj1v.png')
+count_dooku = Item.create(name: 'count dooku', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/count_dooku_ewyof8.png')
 puts 'Items done'
 
 puts 'Seeding QuizItems'

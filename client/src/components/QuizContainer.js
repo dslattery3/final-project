@@ -3,7 +3,7 @@ import QuizCard from './QuizCard'
 
 
 function QuizContainer({ quizzes }) {
-  console.log(quizzes)
+  // console.log(quizzes)
   const quizCards = quizzes && quizzes.filter((q, i) => i != 0).map((q, i) => <QuizCard q={q} key={i} />)
 
   return (
