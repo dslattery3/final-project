@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_08_150856) do
+ActiveRecord::Schema.define(version: 2022_04_12_144819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2022_04_08_150856) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quizitems", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "quiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_quizitems_on_item_id"
+    t.index ["quiz_id"], name: "index_quizitems_on_quiz_id"
   end
 
   create_table "quizzes", force: :cascade do |t|
@@ -70,10 +79,14 @@ ActiveRecord::Schema.define(version: 2022_04_08_150856) do
     t.string "profile_pic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "profile_pic_name"
+    t.string "profile_pic_wiki"
   end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizitems", "items"
+  add_foreign_key "quizitems", "quizzes"
   add_foreign_key "useritems", "items"
   add_foreign_key "useritems", "users"
   add_foreign_key "userquizzes", "quizzes"

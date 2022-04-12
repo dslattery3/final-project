@@ -10,29 +10,41 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
 
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
 
-  console.log(userAnswer)
-
   const handleQuizSumbit = () => {
+    const score = (Object.values(userAnswer).filter(e => e === true)).length
     if (Object.values(userAnswer).length === questionAnswers.length) {
-      const score = (Object.values(userAnswer).filter(e => e === true)).length
       const toScore = {
         quiz_id: id,
         user_id: user.id,
         score: score
       }
-      fetch('/userquizzes', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(toScore)
-      }).then(r => r.json()).then(data => {
-        let newUser = { ...user }
-        newUser.userquizzes.push(data)
-        setUser(newUser)
-        setUserAnswer({})
-        navigate('/user')
-      })
+      if (score === questionAnswers.length) {
+        fetch('/quizzes/:id/perfect_score', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(toScore)
+        }).then(r => r.json()).then(data => {
+
+        })
+
+      }
+      else {
+        fetch('/userquizzes', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(toScore)
+        }).then(r => r.json()).then(data => {
+          let newUser = { ...user }
+          newUser.userquizzes.push(data)
+          setUser(newUser)
+        })
+      }
+      setUserAnswer({})
+      navigate('/user')
     }
     else {
       alert('You did not answer all questions')

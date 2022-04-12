@@ -36,7 +36,7 @@ function App() {
             species: o.species,
             gender: o.gender,
             height: o.height,
-            affiliations: o.affiliations,
+            wiki_page: o.wiki,
             home: o.homeworld,
             image: o.image
           }

@@ -15,7 +15,8 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
         human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species != "human")
         gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender != "male")
         tall ? copy = copy.filter(c => c.height >= height) : copy = copy.filter(c => c.height < height)
-        hc ? copy = copy.filter(c => hot.includes(c.home) || temp.includes(c.home)) : copy.filter(c => cold.includes(c.home) || temp.includes(c.home))
+        // hc ? copy = copy.filter(c => hot.includes(c.home) || temp.includes(c.home)) : copy.filter(c => cold.includes(c.home) || temp.includes(c.home))
+        hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy.filter(c => !hot.includes(c.home))
         return copy
     }
 
