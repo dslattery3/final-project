@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import QuestionAnswerCard from './QuestionAnswerCard'
 
-function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate }) {
+function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate, isActive, setIsActive }) {
   const { id } = useParams()
   if (parseInt(id) === 1) {
     navigate('/quizzes')
   }
 
-  const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
+  const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
   const handleQuizSumbit = () => {
     const score = (Object.values(userAnswer).filter(e => e === true)).length
@@ -28,6 +28,7 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
         }).then(r => r.json()).then(data => {
           setUser(data)
           setUserAnswer({})
+          setIsActive({})
           navigate('/user')
         })
       }
@@ -43,6 +44,7 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate 
           newUser.userquizzes.push(data)
           setUser(newUser)
           setUserAnswer({})
+          setIsActive({})
           navigate('/user')
         })
       }

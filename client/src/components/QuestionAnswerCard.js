@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-function QuestionAnswerCard({ q, userAnswer, setUserAnswer }) {
+function QuestionAnswerCard({ q, userAnswer, setUserAnswer, isActive, setIsActive }) {
+
 
   const answers = q && q.answers.map(a => {
     return (
-      <button className='answer-button' onClick={() => handleClick(q, a)}>{a.answer_text}</button>
+      <button className={isActive[q.id] === a.answer_id ? 'active-answer-button' : 'answer-button'} onClick={() => handleClick(q, a)}>{a.answer_text}</button>
     )
   })
 
@@ -12,6 +13,9 @@ function QuestionAnswerCard({ q, userAnswer, setUserAnswer }) {
     let answerObj = { ...userAnswer }
     answerObj[q.id] = a.correct
     setUserAnswer(answerObj)
+    let activeObj = { ...isActive }
+    activeObj[q.id] = a.answer_id
+    setIsActive(activeObj)
   }
 
   return (

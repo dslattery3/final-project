@@ -17,6 +17,7 @@ function App() {
   const [user, setUser] = useState(null)
   const [quizzes, setQuizzes] = useState(null)
   const [userAnswer, setUserAnswer] = useState({})
+  const [isActive, setIsActive] = useState({})
 
   useEffect(() => {
     fetch('/me')
@@ -62,6 +63,7 @@ function App() {
   const navigate = useNavigate()
 
   console.log(user)
+  console.log(isActive)
 
   return (
     <div className="App">
@@ -69,7 +71,7 @@ function App() {
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
         <Route path='/personality_quiz' element={<PersonalityQuiz quizzes={quizzes} user={user} setUser={setUser} characters={characters} height={height} navigate={navigate} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />} />
-        <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer} user={user} setUser={setUser} navigate={navigate} />} />
+        <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer} user={user} setUser={setUser} navigate={navigate} isActive={isActive} setIsActive={setIsActive} />} />
         <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate} />} />
         <Route path='/login' element={<Login setUser={setUser} navigate={navigate} />} />
