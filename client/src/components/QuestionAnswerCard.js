@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 
 function QuestionAnswerCard({ q, userAnswer, setUserAnswer, isActive, setIsActive }) {
 
-
-  const answers = q && q.answers.map(a => {
+  const answers = q && q.answers.map((a, i) => {
     return (
-      <button className={isActive[q.id] === a.answer_id ? 'active-answer-button' : 'answer-button'} onClick={() => handleClick(q, a)}>{a.answer_text}</button>
+      <button key={i} className={isActive[q.id] === a.answer_id ? 'active-answer-button' : 'answer-button'} onClick={() => handleClick(q, a)}>{a.answer_text}</button>
     )
   })
 

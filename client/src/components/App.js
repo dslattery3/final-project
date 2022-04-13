@@ -65,12 +65,26 @@ function App() {
   console.log(user)
   console.log(isActive)
 
+  //combine quiz props and personality quiz
+  // personality quiz gets extra height and characters props
+
+  // const quizProps = {
+  //   user: user,
+  //   setUser: setUser,
+  //   quizzes: quizzes,
+  //   navigate: navigate,
+  //   userAnswer: userAnswer,
+  //   setUserAnswer: setUserAnswer,
+  //   isActive: isActive,
+  //   setIsActive: setIsActive
+  // }
+
   return (
     <div className="App">
       {user && <NavBar user={user} />}
       <Routes>
         <Route path='/user' element={<UserPage user={user} />} />
-        <Route path='/personality_quiz' element={<PersonalityQuiz quizzes={quizzes} user={user} setUser={setUser} characters={characters} height={height} navigate={navigate} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />} />
+        <Route path='/personality_quiz' element={<PersonalityQuiz quizzes={quizzes} user={user} setUser={setUser} characters={characters} height={height} navigate={navigate} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />} />
         <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer} user={user} setUser={setUser} navigate={navigate} isActive={isActive} setIsActive={setIsActive} />} />
         <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
         <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate} />} />

@@ -1,11 +1,13 @@
 import React from 'react'
 import QuestionAnswerCard from './QuestionAnswerCard'
 
-function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswer, user, setUser, navigate }) {
+function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswer, user, setUser, navigate, setIsActive, isActive }) {
+
+    // quizzes && quizzes.find(q => q.name === "personality quiz").questions.forEach(q => setUserAnswer)
 
     let pqResults = []
 
-    const questionAnswers = quizzes && quizzes.find(q => q.name === "personality quiz").questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} />)
+    const questionAnswers = quizzes && quizzes.find(q => q.name === "personality quiz").questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
     const filterFunction = (human = userAnswer[1], gender = userAnswer[2], tall = userAnswer[3], hc = userAnswer[4]) => {
         const hot = ['tatooine', 'jakuu', 'ryloth', 'stewjon', 'rodia', 'socorro', 'bespin', 'sullust', 'neimoidia', 'dathomir', 'tund', 'glee anselm', 'iktotch', 'geonosis', 'concord dawn', 'zolan', 'kalee', 'yavin 4', 'parnassos']
@@ -15,7 +17,6 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
         human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species != "human")
         gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender != "male")
         tall ? copy = copy.filter(c => c.height >= height) : copy = copy.filter(c => c.height < height)
-        // hc ? copy = copy.filter(c => hot.includes(c.home) || temp.includes(c.home)) : copy.filter(c => cold.includes(c.home) || temp.includes(c.home))
         hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy.filter(c => !hot.includes(c.home))
         return copy
     }

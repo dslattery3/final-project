@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import QuestionAnswerCard from './QuestionAnswerCard'
 
-function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate, isActive, setIsActive }) {
+function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setIsActive, user, setUser }) {
+  console.log('quiz props', quizzes)
   const { id } = useParams()
-  if (parseInt(id) === 1) {
+  console.log(quizzes, 'quizzes')
+  if (quizzes && parseInt(id) === quizzes[0].id) {
     navigate('/quizzes')
   }
+  console.log(quizzes)
 
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
@@ -61,7 +64,7 @@ function QuizPage({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate,
       <div className='quiz-question-container'>
         {questionAnswers}
       </div>
-      <button onClick={() => handleQuizSumbit()} className='submit-answers-button'>Submit</button>
+      <button onClick={handleQuizSumbit} className='submit-answers-button'>Submit</button>
     </div>
   )
 }
