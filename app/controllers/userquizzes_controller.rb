@@ -12,10 +12,14 @@ class UserquizzesController < ApplicationController
 
     def create
         userquiz = Userquiz.create(userquizparams)
-        # user = userquiz.user
-        render json: userquiz,  status: :ok
+        quiz = Quiz.find(userquiz.quiz_id)
+        user = User.find(userquiz.user_id)
+        if params[:score] == quiz.max_score
+            quizitem = quiz.quizitems.sample
+            Useritem.create(user_id: user.id, item_id: quizitem.item_id) unless user.useritems.pluck(:item_id).include?(quizitem.item_id)
+        end
+        render json: user, serializer: UserSerializer, status: :ok
     end
-
 
     private
     def userquizparams

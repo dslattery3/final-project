@@ -3,13 +3,11 @@ import { useParams } from 'react-router-dom'
 import QuestionAnswerCard from './QuestionAnswerCard'
 
 function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setIsActive, user, setUser }) {
-  console.log('quiz props', quizzes)
   const { id } = useParams()
-  console.log(quizzes, 'quizzes')
+
   if (quizzes && parseInt(id) === quizzes[0].id) {
     navigate('/quizzes')
   }
-  console.log(quizzes)
 
   const questionAnswers = quizzes && quizzes.find(q => q.id === parseInt(id)).questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
@@ -21,37 +19,18 @@ function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setI
         user_id: user.id,
         score: score
       }
-      if (score === questionAnswers.length) {
-        fetch(`/quizzes/${id}/perfect_score`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(toScore)
-        }).then(r => r.json()).then(data => {
-          setUser(data)
-          setUserAnswer({})
-          setIsActive({})
-          navigate('/user')
-        })
-      }
-      else {
-        fetch('/userquizzes', {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(toScore)
-        }).then(r => r.json()).then(data => {
-          let newUser = { ...user }
-          newUser.userquizzes.push(data)
-          setUser(newUser)
-          setUserAnswer({})
-          setIsActive({})
-          navigate('/user')
-        })
-      }
-
+      fetch('/userquizzes', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(toScore)
+      }).then(r => r.json()).then(data => {
+        setUser(data)
+        setUserAnswer({})
+        setIsActive({})
+        navigate('/user')
+      })
     }
     else {
       alert('You did not answer all questions')

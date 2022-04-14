@@ -3,7 +3,7 @@ Item.destroy_all
 
 puts 'Seeding quizzes'
 personalityquiz = Quiz.create(name: 'personality quiz')
-sithquiz = Quiz.create(name: 'sith')
+sithquiz = Quiz.create(name: 'sith', max_score: 5)
 puts 'Quizes done'
 
 puts 'Seeding questions'

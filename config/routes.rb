@@ -12,8 +12,6 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/me", to: "users#me"
-
-  post "/quizzes/:id/perfect_score", to: "quizzes#perfect_score"
-
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

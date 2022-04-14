@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-function Login({setUser, navigate}) {
+function Login({ setUser, navigate }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -15,29 +15,32 @@ function Login({setUser, navigate}) {
         username: username,
         password: password
       })
-    }).then(r=> {
-      if (r.ok){
+    }).then(r => {
+      if (r.ok) {
         r.json().then(data => {
           console.log(data)
           setUser(data)
-          navigate('/user')
+          data.profile_pic ?
+            navigate('/user')
+            :
+            navigate('/personality_quiz')
         })
       }
-      else{
+      else {
         r.json().then(console.log)
       }
-  })
+    })
   }
 
   return (
     <div className='login-container'>
-            <form className='form' onSubmit={e => handleLogin(e)}>
-                <label>username:</label>
-                <input onChange={e => setUsername(e.target.value)} type='text' placeholder='username' value={username}/>
-                <label>password</label>
-                <input onChange={e => setPassword(e.target.value)} type='password' placeholder='password' value={password}/>
-                <button type='submit'>Login</button>
-            </form>   
+      <form className='form' onSubmit={e => handleLogin(e)}>
+        <label>username:</label>
+        <input onChange={e => setUsername(e.target.value)} type='text' placeholder='username' value={username} />
+        <label>password</label>
+        <input onChange={e => setPassword(e.target.value)} type='password' placeholder='password' value={password} />
+        <button type='submit'>Login</button>
+      </form>
     </div>
   )
 }

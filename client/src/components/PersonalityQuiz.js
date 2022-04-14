@@ -10,14 +10,14 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
     const questionAnswers = quizzes && quizzes.find(q => q.name === "personality quiz").questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
     const filterFunction = (human = userAnswer[1], gender = userAnswer[2], tall = userAnswer[3], hc = userAnswer[4]) => {
-        const hot = ['tatooine', 'jakuu', 'ryloth', 'stewjon', 'rodia', 'socorro', 'bespin', 'sullust', 'neimoidia', 'dathomir', 'tund', 'glee anselm', 'iktotch', 'geonosis', 'concord dawn', 'zolan', 'kalee', 'yavin 4', 'parnassos']
+        const hot = ['tatooine', 'jakku', 'ryloth', 'stewjon', 'rodia', 'socorro', 'bespin', 'sullust', 'neimoidia', 'dathomir', 'tund', 'glee anselm', 'iktotch', 'geonosis', 'concord dawn', 'zolan', 'kalee', 'yavin 4', 'parnassos']
         const temp = ['eriadu', 'kashyyk', 'coruscant', 'corellia', 'bestine', 'trandosha', 'mon cala', 'endor', 'toydaria', 'malastare', 'aleen', 'haruun kal', 'cerea', 'nar shaddaa', 'quermia', 'dorin', 'champala', 'serenno', 'alderaan', 'skako', 'shili', 'utapau']
         const cold = ['chandrilla', 'naboo', 'kamino', 'vulpter', 'mirial', 'ojom', 'scipio', 'umbara']
         let copy = []
         human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species != "human")
         gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender != "male")
         tall ? copy = copy.filter(c => c.height >= height) : copy = copy.filter(c => c.height < height)
-        hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy.filter(c => !hot.includes(c.home))
+        hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy = copy.filter(c => !hot.includes(c.home))
         return copy
     }
 

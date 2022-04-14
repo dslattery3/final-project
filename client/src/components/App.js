@@ -62,12 +62,11 @@ function App() {
 
   const navigate = useNavigate()
 
-  console.log(user)
-  console.log(isActive)
+  console.log('user', user)
+  console.log('quizzes', quizzes)
 
   //combine quiz props and personality quiz
   // personality quiz gets extra height and characters props
-
   // const quizProps = {
   //   user: user,
   //   setUser: setUser,
