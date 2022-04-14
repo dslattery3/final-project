@@ -1,11 +1,37 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import QuestionAnswerCard from './QuestionAnswerCard'
+import { patchUser, getCharacters } from '../tools/api'
 
-function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswer, user, setUser, navigate, setIsActive, isActive }) {
+function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, navigate, setIsActive, isActive }) {
+    const [characters, setCharacters] = useState([])
+    const [height, setHeight] = useState(0)
 
-    // quizzes && quizzes.find(q => q.name === "personality quiz").questions.forEach(q => setUserAnswer)
+    useEffect(() => {
+        getCharacters().then(data => {
+            const people = data.map(o => {
+                return {
+                    name: o.name,
+                    species: o.species,
+                    gender: o.gender,
+                    height: o.height,
+                    wiki_page: o.wiki,
+                    home: o.homeworld,
+                    image: o.image
+                }
+            })
+            setCharacters(people)
+            setHeight(avgHeight(people))
+        }
+        )
+    }, [])
 
-    let pqResults = []
+    const reducer = (pV, cV) => pV + cV
+
+    const avgHeight = (arr) => {
+        let heightArr = arr.map(o => o.height).filter(h => h !== undefined)
+        const sum = heightArr.reduce(reducer, 0)
+        return (sum / heightArr.length)
+    }
 
     const questionAnswers = quizzes && quizzes.find(q => q.name === "personality quiz").questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
 
@@ -18,23 +44,17 @@ function PersonalityQuiz({ characters, height, quizzes, userAnswer, setUserAnswe
         gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender != "male")
         tall ? copy = copy.filter(c => c.height >= height) : copy = copy.filter(c => c.height < height)
         hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy = copy.filter(c => !hot.includes(c.home))
-        return copy
+        return copy[Math.floor(Math.random() * copy.length)]
     }
 
     const handleQuizSumbit = () => {
-        pqResults = filterFunction()
-        const randomElement = pqResults[Math.floor(Math.random() * pqResults.length)]
-        fetch(`/users/${user.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                profile_pic: randomElement.image,
-                profile_pic_name: randomElement.name,
-                profile_pic_wiki: randomElement.wiki_page
-            })
-        }).then(r => r.json()).then(data => {
+        const randomElement = filterFunction()
+        const body = JSON.stringify({
+            profile_pic: randomElement.image,
+            profile_pic_name: randomElement.name.toLowerCase(),
+            profile_pic_wiki: randomElement.wiki_page
+        })
+        patchUser(user.id, body).then(data => {
             setUser(data)
             setUserAnswer({})
             navigate('/user')

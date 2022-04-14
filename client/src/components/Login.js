@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { postLogin } from '../tools/api'
 
 function Login({ setUser, navigate }) {
   const [username, setUsername] = useState('')
@@ -6,16 +7,11 @@ function Login({ setUser, navigate }) {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password
-      })
-    }).then(r => {
+    const body = JSON.stringify({
+      username: username,
+      password: password
+    })
+    postLogin(body).then(r => {
       if (r.ok) {
         r.json().then(data => {
           console.log(data)

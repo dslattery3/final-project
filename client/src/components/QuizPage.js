@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import QuestionAnswerCard from './QuestionAnswerCard'
+import { postUserQuizzes } from '../tools/api'
 
 function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setIsActive, user, setUser }) {
   const { id } = useParams()
@@ -19,13 +20,7 @@ function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setI
         user_id: user.id,
         score: score
       }
-      fetch('/userquizzes', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(toScore)
-      }).then(r => r.json()).then(data => {
+      postUserQuizzes(JSON.stringify(toScore)).then(data => {
         setUser(data)
         setUserAnswer({})
         setIsActive({})

@@ -50,10 +50,26 @@ Answer.create(answer_text: "general grievous", correct: false, question_id: sith
 puts 'Answers done'
 
 puts 'Seeding Items'
-darth_maul = Item.create(name: 'darth maul', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_maul_ilk9lz.png')
-darth_vader = Item.create(name: 'darth vader', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_vader_cxsyzk.png')
-darth_sidious = Item.create(name: 'darth sidious', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/darth_sidious_wenj1v.png')
-count_dooku = Item.create(name: 'count dooku', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649789612/SW:Sticker%20Collector/count_dooku_ewyof8.png')
+puts 'Seeding Sith'
+darth_maul = Item.create(name: 'darth maul', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868967/SW:Sticker%20Collector/Sith/darth_maul_msupof.png')
+darth_vader = Item.create(name: 'darth vader', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868967/SW:Sticker%20Collector/Sith/darth_vader_dmhvst.png')
+darth_sidious = Item.create(name: 'darth sidious', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868967/SW:Sticker%20Collector/Sith/darth_sidious_vbnlea.png')
+count_dooku = Item.create(name: 'count dooku', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868967/SW:Sticker%20Collector/Sith/count_dooku_v2fnun.png')
+snoke = Item.create(name: 'snoke', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649886170/SW:Sticker%20Collector/Sith/snoke_pguj7p.png')
+chancellor_palpatine_unlimited = Item.create(name: 'cancellor palpatine (unlimited power)', category: 'sith' image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881394/SW:Sticker%20Collector/Sith/chancellor_palpatine_force_lightning_i318la.png')
+vader_unmasked = Item.create(name: 'darth vader (unmasked)', category: 'sith', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881435/SW:Sticker%20Collector/Sith/darth_vader_unmasked_pcybx8.png')
+emperor_palpatine = Item.create(name: 'emperor palpatine', category: 'sith', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649883787/SW:Sticker%20Collector/Sith/emperor_palpatine_cane_ov2a7k.png')
+chancellor_palpatine_lightsaber = Item.create(name: 'chancellor palpatine (lightsaber)', category: 'sith', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649883787/SW:Sticker%20Collector/Sith/chancellor_palpatine_lightsaber_l7hnad.png')
+puts 'Seeding Jedi'
+shaak_ti = Item.create(name: 'shaak ti', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649886677/SW:Sticker%20Collector/Jedi/shaak_ti_xuanfp.png' )
+plo_koon = Item.create(name: 'plo koon', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881369/SW:Sticker%20Collector/Jedi/plo_koon_pyzc48.png' )
+qui_gon_jin = Item.create(name: 'qui gon jin', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881369/SW:Sticker%20Collector/Jedi/qui_gon_jin_bckc8h.png' )
+kit_fisto = Item.create(name: 'kit fisto', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881369/SW:Sticker%20Collector/Jedi/kit_fisto_geomzh.png')
+mace_windu = Item.create(name: 'mace windu', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649870076/SW:Sticker%20Collector/Jedi/mace_windu_wk4bvd.png')
+yoda = Item.create(name: 'yoda', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868947/SW:Sticker%20Collector/Jedi/yoda_ig9uq5.png' )
+anakin_skywalker = Item.create(name: 'anakin skywalker', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649868947/SW:Sticker%20Collector/Jedi/anakin_skywalker_pbvtqw.png')
+stass_allie = Item.create(name: 'stass allie', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881369/SW:Sticker%20Collector/Jedi/stass_allie_fyfit9.png')
+coleman_trebor = Item.create(name: 'coleman trebor', category: 'jedi', image_url: 'https://res.cloudinary.com/dxuhofgoz/image/upload/v1649881369/SW:Sticker%20Collector/Jedi/coleman_trebor_hrzj9l.png')
 puts 'Items done'
 
 puts 'Seeding QuizItems'

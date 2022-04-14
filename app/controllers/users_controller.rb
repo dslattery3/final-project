@@ -10,9 +10,10 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: params[:id])
         if user.id != session[:user_id]
-            return render json: {error: "Not Authorized"}, status: :unauthorized
+            render json: {error: "Not Authorized"}, status: :unauthorized
+        else
+            render json: user, include: :userquizzes, status: :ok
         end
-        render json: user, include: :userquizzes, status: :ok
     end
 
     def update

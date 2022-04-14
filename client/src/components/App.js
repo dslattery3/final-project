@@ -10,14 +10,15 @@ import QuizContainer from "./QuizContainer"
 import QuizPage from "./QuizPage"
 import PersonalityQuiz from "./PersonalityQuiz"
 import Footer from "./Footer"
+import { getQuizzes } from "../tools/api"
 
 function App() {
-  const [characters, setCharacters] = useState([])
-  const [height, setHeight] = useState(0)
   const [user, setUser] = useState(null)
   const [quizzes, setQuizzes] = useState(null)
   const [userAnswer, setUserAnswer] = useState({})
   const [isActive, setIsActive] = useState({})
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch('/me')
@@ -28,72 +29,62 @@ function App() {
       })
   }, [])
 
-  useEffect(() => {
-    fetch('https://akabab.github.io/starwars-api/api/all.json')
-      .then(r => r.json())
-      .then(data => {
-        const people = data.map(o => {
-          return {
-            name: o.name,
-            species: o.species,
-            gender: o.gender,
-            height: o.height,
-            wiki_page: o.wiki,
-            home: o.homeworld,
-            image: o.image
-          }
-        })
-        setCharacters(people)
-        setHeight(avgHeight(people))
-      }
-      )
-  }, [])
+  console.log(user)
 
   useEffect(() => {
-    fetch('/quizzes').then(r => r.json()).then(setQuizzes)
+    getQuizzes().then(setQuizzes)
   }, [])
 
-  const avgHeight = (arr) => {
-    let initialSum = 0
-    let heightArr = arr.map(o => o.height).filter(h => h !== undefined)
-    const sum = heightArr.reduce((pV, cV) => pV + cV, initialSum)
-    return (sum / heightArr.length)
+
+  const quizProps = {
+    user,
+    setUser,
+    quizzes,
+    navigate,
+    userAnswer,
+    setUserAnswer,
+    isActive,
+    setIsActive
+  }
+  const userNavProps = {
+    setUser,
+    user,
+    navigate
   }
 
-  const navigate = useNavigate()
+  const allPeoplePages = (
+    <>
+      <Route path='/signup' element={<SignUp {...userNavProps} />} />
+      <Route path='/login' element={<Login {...userNavProps} />} />
+      <Route path='/' element={<Home user={user} />} />
+    </>
+  )
 
-  console.log('user', user)
-  console.log('quizzes', quizzes)
-
-  //combine quiz props and personality quiz
-  // personality quiz gets extra height and characters props
-  // const quizProps = {
-  //   user: user,
-  //   setUser: setUser,
-  //   quizzes: quizzes,
-  //   navigate: navigate,
-  //   userAnswer: userAnswer,
-  //   setUserAnswer: setUserAnswer,
-  //   isActive: isActive,
-  //   setIsActive: setIsActive
-  // }
-
-  return (
-    <div className="App">
-      {user && <NavBar user={user} />}
-      <Routes>
-        <Route path='/user' element={<UserPage user={user} />} />
-        <Route path='/personality_quiz' element={<PersonalityQuiz quizzes={quizzes} user={user} setUser={setUser} characters={characters} height={height} navigate={navigate} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />} />
-        <Route path='/quizzes/:id' element={<QuizPage quizzes={quizzes} userAnswer={userAnswer} setUserAnswer={setUserAnswer} user={user} setUser={setUser} navigate={navigate} isActive={isActive} setIsActive={setIsActive} />} />
-        <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
-        <Route path='/signup' element={<SignUp setUser={setUser} navigate={navigate} />} />
-        <Route path='/login' element={<Login setUser={setUser} navigate={navigate} />} />
-        <Route path='/logout' element={<Logout setUser={setUser} navigate={navigate} />} />
-        <Route path='/' element={<Home user={user} />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
+  if (!user) {
+    return (
+      <div className="App">
+        <Routes>
+          {allPeoplePages}
+        </Routes>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className="App">
+        {user && <NavBar user={user} />}
+        <Routes>
+          <Route path='/user' element={<UserPage {...userNavProps} />} />
+          <Route path='/personality_quiz' element={<PersonalityQuiz {...quizProps} />} />
+          <Route path='/quizzes/:id' element={<QuizPage {...quizProps} />} />
+          <Route path='/quizzes' element={<QuizContainer quizzes={quizzes} />} />
+          <Route path='/logout' element={<Logout {...userNavProps} />} />
+          {allPeoplePages}
+        </Routes>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default App;
