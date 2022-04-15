@@ -5,7 +5,7 @@ function StoreContainer({ categories }) {
 
     const storeCards = categories && categories.map((e, i) => {
         return (
-            <NavLink to={`${e && e}`}>
+            <NavLink key={i} to={`${e && e}`}>
                 <button className='store-card'>
                     <h1>{e && e}</h1>
                 </button>

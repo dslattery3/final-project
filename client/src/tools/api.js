@@ -23,3 +23,7 @@ export function patchUser(user_id, body) {
 export function getItems() {
     return fetch('/items').then(r => r.json())
 }
+
+export function postPurchase(body) {
+    return fetch('/useritems', { method: 'POST', headers, body }).then(r => r.json())
+}
