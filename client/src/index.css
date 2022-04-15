@@ -127,16 +127,6 @@ button:active {
   border-radius: 20px;
 }
 
-.quiz-card {
-  border-style: solid;
-  border-width: 2px;
-  padding: 10px;
-  margin: 10%;
-  border-radius: 8%;
-  color: yellow;
-  width: 110%;
-}
-
 /* .quiz-container{
   display: flex;
   border-style: solid;
@@ -213,4 +203,25 @@ button:active {
 
 .user-scores>h4 {
   margin-top: -8px;
+}
+
+.store-item-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-end;
+}
+
+.store-button {
+  height: 275px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.store-button:hover>img {
+  border: 3px solid red;
+  border-radius: 15px;
 }

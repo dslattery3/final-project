@@ -19,3 +19,7 @@ export function postLogin(body) {
 export function patchUser(user_id, body) {
     return fetch(`/users/${user_id}`, { method: "PATCH", headers, body }).then(r => r.json())
 }
+
+export function getItems() {
+    return fetch('/items').then(r => r.json())
+}
