@@ -16,7 +16,7 @@ function StoreContainer({ categories }) {
     return (
         <div>
             <h2>cantina</h2>
-            <div className='store-card-container'>
+            <div className='card-container'>
                 {categories && storeCards}
             </div>
         </div>

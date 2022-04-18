@@ -16,8 +16,8 @@ function QuizContainer({ quizzes }) {
 
   return (
     <div>
-      <h2>quiz Container</h2>
-      <div>
+      <h2>quizzes</h2>
+      <div className='card-container'>
         {quizzes && quizCards}
       </div>
     </div>
