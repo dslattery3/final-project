@@ -50,8 +50,6 @@ function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, na
         return copy[Math.floor(Math.random() * copy.length)]
     }
 
-    console.log(characters.filter(o => o.home === 'parnassos'))
-
     const handleQuizSumbit = () => {
         const randomElement = filterFunction()
         const body = JSON.stringify({

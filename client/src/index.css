@@ -186,6 +186,8 @@ button:active {
   flex-flow: row wrap;
   justify-content: center;
   align-items: baseline;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .user-collection>img {

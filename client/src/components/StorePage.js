@@ -6,9 +6,6 @@ function StorePage({ storeStickers, categories, setUser, user }) {
     const { catName } = useParams()
 
     const handlePurchase = (stickerObj) => {
-        console.log(stickerObj.id)
-        console.log(user)
-
         if (user.wallet >= stickerObj.price) {
             const body = JSON.stringify({
                 user_id: user.id,

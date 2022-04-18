@@ -32,8 +32,6 @@ function App() {
       })
   }, [])
 
-  console.log(user)
-
   useEffect(() => {
     getQuizzes().then(setQuizzes)
   }, [])
@@ -45,8 +43,6 @@ function App() {
 
   let storeStickers = stickerItems && [...stickerItems].filter((o) => o.from_store === true)
   let categories = storeStickers && Array.from(new Set(storeStickers.map(o => o.category)))
-
-  console.log(categories)
 
   const storeProps = {
     storeStickers,
