@@ -35,7 +35,7 @@ function StorePage({ storeStickers, categories, setUser, user }) {
                 <img src={o.image_url} alt={o.name} />
                 <h5>{o.name}</h5>
                 <h3>
-                    {o.price}
+                    <img src='https://res.cloudinary.com/dxuhofgoz/image/upload/c_scale,w_8/v1650288711/SW:Sticker%20Collector/galactic_credits_a9ajkw.png' alt='galactic credits' /> {o.price}
                 </h3>
             </button>
         )
@@ -43,7 +43,12 @@ function StorePage({ storeStickers, categories, setUser, user }) {
 
     return (
         <div>
-            <h1>{catName} store</h1>
+            <div className='headline'>
+                <h1>{catName} store</h1>
+                <h2>
+                    <img src='https://res.cloudinary.com/dxuhofgoz/image/upload/c_scale,w_12/v1650288711/SW:Sticker%20Collector/galactic_credits_a9ajkw.png' alt='galactic credits' /> {user && user.wallet}
+                </h2>
+            </div>
             <div className='store-item-container'>
                 {storeItems}
             </div>

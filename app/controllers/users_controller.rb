@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
     def create
         user = User.create!(user_params)
+        user.update(wallet: 5)
         session[:user_id] = user.id
         render json: user, status: :created
     end
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
 
     def update
         user = User.find_by(id: params[:id])
-        user.update(profile_pic: params[:profile_pic], profile_pic_name: params[:profile_pic_name], profile_pic_wiki: params[:profile_pic_wiki])
+        user.update(profile_pic_params)
         render json: user, status: :ok
     end
 
@@ -33,4 +34,9 @@ class UsersController < ApplicationController
     def user_params
         params.permit(:username, :password)
     end
+
+    def profile_pic_params
+        params.permit(:profile_pic, :profile_pic_name, :profile_pic_wiki)
+    end
+
 end

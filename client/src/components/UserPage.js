@@ -8,7 +8,12 @@ function UserPage({ user, navigate }) {
 
   return (
     <div>
-      <h1>{user && `${user.username}'s Headquarters`}</h1>
+      <div className='headline'>
+        <h1>{user && `${user.username}'s Headquarters`}</h1>
+        <h2>
+          <img src='https://res.cloudinary.com/dxuhofgoz/image/upload/c_scale,w_12/v1650288711/SW:Sticker%20Collector/galactic_credits_a9ajkw.png' alt='galactic credits' /> {user && user.wallet}
+        </h2>
+      </div>
       <div className='user-avatar' style={{ marginBottom: '50px' }}>
         <a href={user && user.profile_pic_wiki} target="_blank">
           {user && <img onClick={() => console.log(user.profile_pic_wiki)} className='profile-pic' src={user.profile_pic} alt={user.profile_pic_name} />}
