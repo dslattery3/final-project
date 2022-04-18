@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 function NavBar() {
   const location = useLocation()
-  const routes = [{ pathname: '/', name: 'Home' }, { pathname: '/quizzes', name: 'Archives' }, { pathname: '/user', name: 'userPage' }, { pathname: '/store', name: 'cantina' }]
+  const routes = [{ pathname: '/', name: 'Home' }, { pathname: '/user', name: 'userPage' }, { pathname: '/quizzes', name: 'Archives' }, { pathname: '/store', name: 'cantina' }]
   const buttons = routes.filter(o => o.pathname != location.pathname).map((o, i) => {
     return (
       <NavLink to={o.pathname} key={i}>

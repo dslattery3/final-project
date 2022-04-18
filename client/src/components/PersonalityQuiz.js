@@ -21,6 +21,7 @@ function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, na
             })
             setCharacters(people)
             setHeight(avgHeight(people))
+            setIsActive({})
         }
         )
     }, [])
@@ -33,11 +34,13 @@ function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, na
         return (sum / heightArr.length)
     }
 
-    const questionAnswers = quizzes && quizzes.find(q => q.name === "personality quiz").questions.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
+    const pq = quizzes && quizzes.find(q => q.name === 'personality quiz').questions
 
-    const filterFunction = (human = userAnswer[1], gender = userAnswer[2], tall = userAnswer[3], hc = userAnswer[4]) => {
-        const hot = ['tatooine', 'jakku', 'ryloth', 'stewjon', 'rodia', 'socorro', 'bespin', 'sullust', 'neimoidia', 'dathomir', 'tund', 'glee anselm', 'iktotch', 'geonosis', 'concord dawn', 'zolan', 'kalee', 'yavin 4', 'parnassos']
-        const temp = ['eriadu', 'kashyyk', 'coruscant', 'corellia', 'bestine', 'trandosha', 'mon cala', 'endor', 'toydaria', 'malastare', 'aleen', 'haruun kal', 'cerea', 'nar shaddaa', 'quermia', 'dorin', 'champala', 'serenno', 'alderaan', 'skako', 'shili', 'utapau']
+    const questionAnswers = pq && pq.map(q => <QuestionAnswerCard q={q} key={q.id} userAnswer={userAnswer} setUserAnswer={setUserAnswer} isActive={isActive} setIsActive={setIsActive} />)
+
+    const filterFunction = (human = userAnswer[pq[0].id], gender = userAnswer[pq[1].id], tall = userAnswer[pq[2].id], hc = userAnswer[pq[3].id]) => {
+        const hot = ['tatooine', 'jakku', 'ryloth', 'stewjon', 'rodia', 'socorro', 'bespin', 'sullust', 'neimoidia', 'dathomir', 'tund', 'glee anselm', 'iktotch', 'geonosis', 'concord dawn', 'zolan', 'kalee', 'yavin 4']
+        const temp = ['eriadu', 'kashyyk', 'coruscant', 'corellia', 'bestine', 'trandosha', 'mon cala', 'endor', 'toydaria', 'malastare', 'aleen', 'haruun kal', 'cerea', 'nar shaddaa', 'quermia', 'dorin', 'champala', 'serenno', 'alderaan', 'skako', 'shili', 'utapau', 'parnassos']
         const cold = ['chandrilla', 'naboo', 'kamino', 'vulpter', 'mirial', 'ojom', 'scipio', 'umbara']
         let copy = []
         human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species != "human")
@@ -46,6 +49,8 @@ function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, na
         hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy = copy.filter(c => !hot.includes(c.home))
         return copy[Math.floor(Math.random() * copy.length)]
     }
+
+    console.log(characters.filter(o => o.home === 'parnassos'))
 
     const handleQuizSumbit = () => {
         const randomElement = filterFunction()
