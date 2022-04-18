@@ -43,8 +43,8 @@ function PersonalityQuiz({ quizzes, userAnswer, setUserAnswer, user, setUser, na
         const temp = ['eriadu', 'kashyyk', 'coruscant', 'corellia', 'bestine', 'trandosha', 'mon cala', 'endor', 'toydaria', 'malastare', 'aleen', 'haruun kal', 'cerea', 'nar shaddaa', 'quermia', 'dorin', 'champala', 'serenno', 'alderaan', 'skako', 'shili', 'utapau', 'parnassos']
         const cold = ['chandrilla', 'naboo', 'kamino', 'vulpter', 'mirial', 'ojom', 'scipio', 'umbara']
         let copy = []
-        human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species != "human")
-        gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender != "male")
+        human ? copy = [...characters].filter(c => c.species === "human") : copy = [...characters].filter(c => c.species !== "human")
+        gender ? copy = copy.filter(c => c.gender === "male") : copy = copy.filter(c => c.gender !== "male")
         tall ? copy = copy.filter(c => c.height >= height) : copy = copy.filter(c => c.height < height)
         hc ? copy = copy.filter(c => !cold.includes(c.home)) : copy = copy.filter(c => !hot.includes(c.home))
         return copy[Math.floor(Math.random() * copy.length)]

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 function QuizContainer({ quizzes }) {
 
-  const quizCards = quizzes && quizzes.filter((q, i) => i != 0).map((q, i) => {
+  const quizCards = quizzes && quizzes.filter((q, i) => i !== 0).map((q, i) => {
     return (
       <NavLink to={`${q && q.id}`}>
         <button>
