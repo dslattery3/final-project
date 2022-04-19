@@ -25,6 +25,13 @@ a {
   margin-right: auto;
 }
 
+.video {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
 button,
 .logout>button {
   font-family: 'Star Jedi', arial;
