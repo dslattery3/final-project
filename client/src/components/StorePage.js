@@ -12,7 +12,6 @@ function StorePage({ storeStickers, categories, setUser, user }) {
                 item_id: stickerObj.id
             })
             postPurchase(body).then(data => {
-                console.log(data)
                 const copy = { ...user }
                 copy.useritems.push(data)
                 copy.wallet = (copy.wallet - stickerObj.price)

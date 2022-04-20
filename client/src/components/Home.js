@@ -5,11 +5,6 @@ import ReactPlayer from 'react-player'
 function Home({ user }) {
   return (
     <div>
-      {/* <h1>@</h1>
-      <h3>+++The+++</h3>
-      <h3>Sticker</h3>
-      <h3>Collector</h3>
-      <h3>++++++++++</h3> */}
       <div className='video'>
         <ReactPlayer
           url="https://www.dropbox.com/s/d7xzf344bp2dpby/vlc-record-2022-04-19-11h07m55s-test.mp4-.mp4?dl=0"

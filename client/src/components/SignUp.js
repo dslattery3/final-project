@@ -27,7 +27,7 @@ function SignUp({ setUser, navigate }) {
       })
     }
     else {
-      //create popup
+      alert('password and confirm password do not match')
     }
   }
 

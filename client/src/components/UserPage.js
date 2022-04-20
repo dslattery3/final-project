@@ -16,7 +16,7 @@ function UserPage({ user, navigate }) {
       </div>
       <div className='user-avatar' style={{ marginBottom: '50px' }}>
         <a href={user && user.profile_pic_wiki} target="_blank">
-          {user && <img onClick={() => console.log(user.profile_pic_wiki)} className='profile-pic' src={user.profile_pic} alt={user.profile_pic_name} />}
+          {user && <img className='profile-pic' src={user.profile_pic} alt={user.profile_pic_name} />}
         </a>
         <p style={{ marginTop: '-10px' }}>{user && user.profile_pic_name}</p>
         <button onClick={() => navigate('/personality_quiz')}>choose an avatar</button>

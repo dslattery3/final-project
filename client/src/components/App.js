@@ -51,7 +51,6 @@ function App() {
     setUser
   }
 
-
   const quizProps = {
     user,
     setUser,
