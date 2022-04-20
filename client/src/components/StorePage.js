@@ -17,6 +17,7 @@ function StorePage({ storeStickers, categories, setUser, user }) {
                 copy.useritems.push(data)
                 copy.wallet = (copy.wallet - stickerObj.price)
                 setUser(copy)
+                alert(`You purchased ${stickerObj.name}`)
             })
         }
         else {

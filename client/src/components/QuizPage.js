@@ -21,6 +21,7 @@ function QuizPage({ quizzes, navigate, userAnswer, setUserAnswer, isActive, setI
         score: score
       }
       postUserQuizzes(JSON.stringify(toScore)).then(data => {
+        alert(`You scored: ${score} out of ${questionAnswers.length}!`)
         setUser(data)
         setUserAnswer({})
         setIsActive({})
