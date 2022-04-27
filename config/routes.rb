@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   get "/me", to: "users#me"
+
+  root to: 'application#home'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
