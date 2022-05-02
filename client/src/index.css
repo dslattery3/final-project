@@ -1,3 +1,12 @@
+@font-face {font-family: "Star Jedi";
+  src: url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.eot"); /* IE9*/
+  src: url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.woff2") format("woff2"), /* chrome firefox */
+  url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.woff") format("woff"), /* chrome firefox */
+  url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+  url("http://db.onlinewebfonts.com/t/af7c07faaff0d16720c25db7990579e2.svg#Star Jedi") format("svg"); /* iOS 4.1- */
+}
+
 body {
   margin: 0;
   font-family: 'Star Jedi', arial;
